@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #app {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        form {
+            display: flex;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 8px;
+        }
+        button {
+            padding: 8px 12px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+            background-color: #f9f9f9;
+        }
+        .delete-btn {
+            cursor: pointer;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <form id="taskForm">
+            <input type="text" id="taskInput" placeholder="Add a new task..." required>
+            <button type="submit">Add</button>
+        </form>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        document.getElementById('taskForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const taskText = document.getElementById('taskInput').value.trim();
+            if (taskText) {
+                const li = document.createElement('li');
+                li.innerHTML = `<input type="checkbox" class="completed"> ${taskText} 
+                <button class="delete-btn">Delete</button>`;
+                document.getElementById('taskList').appendChild(li);
+                document.getElementById('taskInput').value = '';
+            }
+        });
+    </script>
+</body>
+</html>
